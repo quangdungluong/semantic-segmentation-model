@@ -1,8 +1,10 @@
 import numpy as np
 import torch
-from metrics import compute_iou, dice_coef_metric
+from metrics import *
 from tqdm import tqdm
 import copy
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def train_model(model_name, model, dataloader, loss_func, optimizer, scheduler, measures, num_epochs, save_path='r2_unet.pt'):
     print('-'*10 , model_name, '-'*10)
