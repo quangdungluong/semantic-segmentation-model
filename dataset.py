@@ -26,6 +26,7 @@ class SkinLesionDataset(torch.utils.data.Dataset):
         
         Transform = []
         p_transform = random.random()
+        Transform.append(T.Resize((self.image_size, self.image_size)))
         
         if (self.mode=='train') and p_transform <= self.augmentation_prob:
             RotationDegree = self.RotationDegree[random.randint(0, 3)]
