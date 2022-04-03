@@ -108,12 +108,24 @@ class Attention_block(nn.Module):
 
         return x*psi
 
+class ConvRelu(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel, padding):
+        super().__init__()
+        self.conv_relu = nn.Sequential(
+            nn.Conv2d(in_channels, out_channels, kernel, padding=padding),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=True)
+        )
+    def forward(self, x):
+        x = self.conv_relu(x)
+        return x
+
 class ResNeXt_decoder(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(ResNeXt_decoder, self).__init__()
-        self.conv1 = single_conv(in_channels, in_channels//4, 1, 0)
+        self.conv1 = ConvRelu(in_channels, in_channels//4, 1, 0)
         self.deconv = nn.ConvTranspose2d(in_channels//4, in_channels//4, kernel_size=4, stride=2, padding=1, output_padding=0)
-        self.conv2 = single_conv(in_channels//4, out_channels, 1, 0)
+        self.conv2 = ConvRelu(in_channels//4, out_channels, 1, 0)
     def forward(self, x):
         x = self.conv1(x)
         x = self.deconv(x)

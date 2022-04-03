@@ -315,7 +315,7 @@ class ResNeXtUNet(nn.Module):
     def __init__(self, n_classes):
         super(ResNeXtUNet, self).__init__()
         self.base_model = resnext50_32x4d(pretrained=True)
-        
+
         for i, param in enumerate(self.base_model.parameters()):
             param.requires_grad = False
 
@@ -336,7 +336,7 @@ class ResNeXtUNet(nn.Module):
         self.decoder1 = ResNeXt_decoder(filters[0], filters[0])        
         
         # Final Classifier
-        self.last_conv0 = single_conv(256, 128, 3, 1)
+        self.last_conv0 = ConvRelu(256, 128, 3, 1)
         self.last_conv1 = nn.Conv2d(128, n_classes, 3, padding=1)
         
     def setTrainableLayer(self, trainable_layers):
