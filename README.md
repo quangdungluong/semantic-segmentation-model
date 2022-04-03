@@ -55,13 +55,13 @@ In the combined image:
 
 ## Result on test set
 
-|   Method  |   Attention UNet  |
-| :---: | :---: |
-| Dice coefficient | 0.877 |
-| IoU | 0.788 |
-| Precision | 0.872 |
-| Recall | 0.892 |
-| F1-Score | 0.877 |
+|   Method          | ResNeXt50-UNet    | Attention UNet    |
+| :---              | :---:             | :---:             |
+| Dice coefficient  | 0.819             | 0.877             |
+| IoU               | 0.737             | 0.788             |
+| Precision         | 0.801             | 0.872             |
+| Recall            | 0.816             | 0.892             |
+| F1-Score          | 0.793             | 0.877             |
 
 ![](./results/LGG/attn_1.png)
 
