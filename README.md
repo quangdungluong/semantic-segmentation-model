@@ -26,13 +26,13 @@ The dataset (training and validation) was split into three subsets, training set
 
 ## Result
 
-|   Method  |   Attention UNet  |
-| :---: | :---: |
-| Dice coefficient | 0.850 |
-| IoU | 0.743 |
-| Precision | 0.865 |
-| Recall | 0.841 |
-| F1-Score | 0.850 |
+|   Method          | ResNeXt50-UNet    |   Attention UNet  |
+| :---              | :---:             | :---:             |
+| Dice coefficient  | 0.901             | 0.850             |
+| IoU               | 0.822             | 0.743             |
+| Precision         | 0.894             | 0.865             |
+| Recall            | 0.913             | 0.841             |
+| F1-Score          | 0.901             | 0.850             |
 
 
 In the combined image:
@@ -55,13 +55,13 @@ In the combined image:
 
 ## Result on test set
 
-|   Method          | ResNeXt50-UNet    | Attention UNet    |
-| :---              | :---:             | :---:             |
-| Dice coefficient  | 0.819             | 0.877             |
-| IoU               | 0.737             | 0.788             |
-| Precision         | 0.801             | 0.872             |
-| Recall            | 0.816             | 0.892             |
-| F1-Score          | 0.793             | 0.877             |
+|   Method          | UNet              | ResNeXt50-UNet    | Attention UNet    |
+| :---              | :---:             | :---:             | :---:             |
+| Dice coefficient  | 0.848             | 0.819             | 0.877             |
+| IoU               | 0.742             | 0.737             | 0.788             |
+| Precision         | 0.852             | 0.801             | 0.872             |
+| Recall            | 0.850             | 0.816             | 0.892             |
+| F1-Score          | 0.847             | 0.793             | 0.877             |
 
 ![](./results/LGG/attn_1.png)
 
