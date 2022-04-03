@@ -2,6 +2,12 @@ import torch
 import torch.nn as nn
 from torch.nn import init
 from layers import *
+from torchvision.models import resnext50_32x4d
+
+
+######################################################
+##################### UNet ###########################
+######################################################
 
 class U_Net(nn.Module):
     def __init__(self,img_ch=3,output_ch=1):
@@ -67,6 +73,10 @@ class U_Net(nn.Module):
         d1 = self.Conv_1x1(d2)
 
         return nn.Sigmoid()(d1)
+
+######################################################
+##################### R2UNet #########################
+######################################################
 
 class R2U_Net(nn.Module):
     def __init__(self,img_ch=3,output_ch=1,t=2):
@@ -137,6 +147,10 @@ class R2U_Net(nn.Module):
         d1 = self.Conv_1x1(d2)
 
         return nn.Sigmoid()(d1)
+
+######################################################
+################ Attention UNet ######################
+######################################################
 
 class AttU_Net(nn.Module):
     def __init__(self,img_ch=3,output_ch=1):
@@ -209,6 +223,10 @@ class AttU_Net(nn.Module):
         d1 = self.Conv_1x1(d2)
 
         return nn.Sigmoid()(d1)
+
+######################################################
+############### R2_Attention_UNet ####################
+######################################################
 
 class R2AttU_Net(nn.Module):
     def __init__(self,img_ch=3,output_ch=1,t=2):
@@ -287,6 +305,63 @@ class R2AttU_Net(nn.Module):
         d1 = self.Conv_1x1(d2)
 
         return nn.Sigmoid()(d1)
+
+
+######################################################
+################ ResNeXt50-UNet ######################
+######################################################
+
+class ResNeXtUNet(nn.Module):
+    def __init__(self, n_classes):
+        super(ResNeXtUNet, self).__init__()
+        self.base_model = resnext50_32x4d(pretrained=True)
+        
+        for i, param in enumerate(self.base_model.parameters()):
+            param.requires_grad = False
+
+        self.base_layers = list(self.base_model.children())
+        filters = [4*64, 4*128, 4*256, 4*512]
+        
+        # Down
+        self.encoder0 = nn.Sequential(*self.base_layers[:3])
+        self.encoder1 = nn.Sequential(*self.base_layers[4])        
+        self.encoder2 = nn.Sequential(*self.base_layers[5])        
+        self.encoder3 = nn.Sequential(*self.base_layers[6])        
+        self.encoder4 = nn.Sequential(*self.base_layers[7])        
+        
+        # Up
+        self.decoder4 = ResNeXt_decoder(filters[3], filters[2])
+        self.decoder3 = ResNeXt_decoder(filters[2], filters[1])        
+        self.decoder2 = ResNeXt_decoder(filters[1], filters[0])        
+        self.decoder1 = ResNeXt_decoder(filters[0], filters[0])        
+        
+        # Final Classifier
+        self.last_conv0 = single_conv(256, 128, 3, 1)
+        self.last_conv1 = nn.Conv2d(128, n_classes, 3, padding=1)
+        
+    def setTrainableLayer(self, trainable_layers):
+        for name, node in self.base_model.named_children():
+            unlock = name in trainable_layers
+            for param in node.parameters():
+                param.requires_grad = unlock
+
+    def forward(self, x):
+        x = self.encoder0(x)
+        e1 = self.encoder1(x)
+        e2 = self.encoder2(e1)
+        e3 = self.encoder3(e2)
+        e4 = self.encoder4(e3)
+        
+        d4 = self.decoder4(e4) + e3
+        d3 = self.decoder3(d4) + e2
+        d2 = self.decoder2(d3) + e1
+        d1 = self.decoder1(d2)
+        
+        out = self.last_conv0(d1)
+        out = self.last_conv1(out)
+        out = nn.Sigmoid()(out)
+        return out
+
 
 def init_weights(net, init_type='normal', gain=0.02):
     def init_func(m):

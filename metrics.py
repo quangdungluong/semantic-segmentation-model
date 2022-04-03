@@ -59,7 +59,7 @@ def recall(y_true, y_pred):
 def fscore(y_true, y_pred):
     presci = precision(y_true, y_pred)
     rec = recall(y_true, y_pred)
-    return 2*(presci * rec)/(presci + rec)
+    return 2*(presci * rec)/(presci + rec + 1e-6)
 
 def weighted_fscore_loss(prew=1, recw=1):
     def fscore_loss(y_true, y_pred):
