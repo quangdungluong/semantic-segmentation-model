@@ -1,5 +1,23 @@
 # Image Segmentation Model
 
+## Installation
+```
+git clone https://github.com/quangdungluong/semantic-segmentation-model.git
+cd semantic-segmentation-model
+pip install -r requirements.txt
+```
+
+## Flask App demo
+```
+mkdir brain_mri/model_ckpt
+# download the weight then move to brain_mri/model_ckpt directory
+python app.py
+```
+- Weight: [Google Drive](https://drive.google.com/file/d/1FT-EAjxe3kKXd7pYeRyLePV-bvAeGftC/view?usp=sharing)
+
+![Demo Flask App](./results/demo.PNG)
+
+
 ## Usage
 ```
 from model import *
