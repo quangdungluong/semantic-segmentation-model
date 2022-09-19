@@ -19,7 +19,7 @@ def create_model(model_name=CFG.brain_mri["model_name"], img_ch=CFG.brain_mri["i
         model = R2AttU_Net(img_ch, out_ch).to(CFG.device)
     else:
         model = ResNeXtUNet(1).to(CFG.device)
-    model.load_state_dict(torch.load(CFG.brain_mri["model_path"]))
+    model.load_state_dict(torch.load(CFG.brain_mri["model_path"], map_location=CFG.device))
     return model
 
 
