@@ -1,0 +1,145 @@
+body {
+    font-family: 'Merriweather', serif;
+    position: relative;
+    margin: 0 0 0 0;
+    padding-bottom: 0;
+    min-height: 100%;
+    background-image: url('/static/img/a.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+#wrapper {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+    font-size: 30px;
+}
+
+.row{
+    text-align: center;
+}
+.btn {
+    color: white;
+    background-color: #4e79a7;
+    border: none;
+    width: 100px;
+    margin: 10px auto 10px auto;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn {
+    line-height: 40px;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: white;
+    color: #4e79a7;
+}
+
+
+#text {
+    color: black;
+}
+
+
+label {
+    margin-left: 30px;
+    font-weight: normal;
+    color: black;
+    font-size: 12px;
+}
+
+th{
+    text-align: center;
+    vertical-align: middle;
+}
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+}
+
+
+footer{
+    background-color: rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+h3{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+h4{
+    margin: 10px 0 10px 0;
+}
+
+#btn1{
+    width: 500px;
+}
+
+#result{
+    font-size: 25px;
+    margin: 10px auto 10px auto;
+}
+
+/* Style the navigation bar */
+.navbar {
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+  }
+  
+  /* Navbar links */
+  .navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: #2F4F4F;
+  }
+  
+  /* Current/active navbar link */
+  .active {
+    /* background-color: #04AA6D; */
+  }
+  
+  /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+
+#info{
+    float: right;
+}

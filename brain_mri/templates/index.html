@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <!-- Material Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom Styles-->
+    <link rel="stylesheet" href="../static/css/index.css"/>
+    <!-- Google Font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/25/25231.png"/> -->
+    <!-- Title -->
+    <title>Brain MRI Segmentation</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="active" href="https://www.kaggle.com/competitions/sorghum-id-fgvc-9/overview">Brain MRI Segmentation</a>
+        <a id="info" href="https://github.com/quangdungluong"><i class="fa fa-github"></i></a>
+    </div>
+
+    <div class="row" id="banner">
+        <div class="row">
+            <div class="row text-center">
+                <h3>Brain MRI Segmentation</h3>
+            </div>
+            <!-- <div class="row">
+                <h4>Upload the image</h4>
+            </div> -->
+        </div>
+        <form action="" method=post enctype=multipart/form-data class="row text-center">
+            <div>
+                <div><input class="btn" id="btn1" type=file name=file></div>
+            </div>
+            
+            <div class="row text-center">
+                <div><input class="btn" type=submit value=Predict></div>
+            </div>
+            
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="row text-center">
+                <h3 id="result">Result</h3>
+            </div>
+            <div class="bs">
+                <table class="table table-hover">
+                    <tr class="table-active">
+                    <th scope="col">Image</th>
+                    <th scope="col">Prediction</th>
+                    </tr>
+                    <tr>
+                        <th scope="row"> <img width="450" height="450" src="{{imagesource}}" /> </th>
+                        <th scope="row"> <img width="450" height="450" src="{{prediction}}" /> </th>
+                    </tr>
+                </table> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="fixed-bottom" style="display:block ;" >
+        <!-- Copyright -->
+        <p>© 2022 Copyright: LQDisme</p>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</body>
